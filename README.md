@@ -1,99 +1,55 @@
-# Travel Health Monorepo
+# Travel Health
 
-Base microservice structure for a flight health score platform.
+Travel Health is a flight wellness scoring app.  
+You enter flight details, the backend collects external health-related signals, and the app returns a flight health score with a simple breakdown.
 
-## Workspaces
+## Setup and Start
 
-- `frontend/web`: Next.js frontend app
-- `frontend/ui`: Vite-based shared component library
-- `shared/packages/types`: Shared contracts and event payload types
-- `shared/packages/config`: Shared TypeScript and lint config
-- `backend/services/api-gateway`: Public API gateway
-- `backend/services/travel-service`: Flight/travel query intake
-- `backend/services/health-service`: Health criteria service
-- `backend/services/data-scraper-service`: External source data ingestion
-- `backend/services/data-analyzer-service`: Scoring analysis pipeline
-- `backend/services/score-api-service`: Score query API
+### Prerequisites
 
-## Run
+- Node.js 20+
+- pnpm 10+
+- Docker Desktop (or any running Docker engine)
+
+### 1) Install dependencies
 
 ```bash
 pnpm install
-pnpm dev
 ```
 
-Build/run by area:
+### 2) Create env files
 
 ```bash
-pnpm dev:frontend
-pnpm dev:backend
-pnpm build:frontend
-pnpm build:backend
+cp frontend/.env.example frontend/.env
+cp backend/.env.example backend/.env
 ```
 
-Or run from each domain folder:
-
-```bash
-cd frontend && pnpm dev
-cd backend && pnpm dev
-```
-
-## Environment Files
-
-- `frontend/.env.example` -> copy to `frontend/.env`
-- `backend/.env.example` -> copy to `backend/.env`
-- Each backend service also has a local `.env.example` under `backend/services/*` for service-level overrides
-
-## Infra
-
-Use `backend/infra/docker/docker-compose.yml` for local RabbitMQ, Redis, and Postgres instances.
+### 3) Start local infrastructure
 
 ```bash
 docker compose -f backend/infra/docker/docker-compose.yml up -d
 ```
 
-## Shared Tooling
-
-- Bootstrap script: `shared/scripts/bootstrap.sh`
-- Architecture docs: `shared/docs/architecture/overview.md`
-- Frontend setup guide: `frontend/README.md`
-- Backend setup guide: `backend/README.md`
-- Quickstart guide: `shared/docs/guides/quickstart.md`
-- Installation guide: `shared/docs/guides/installation.md`
-- Docker guide: `shared/docs/guides/docker.md`
-
-Useful scripts:
-
-- `shared/scripts/setup-frontend.sh`
-- `shared/scripts/setup-backend.sh`
-- `shared/scripts/start-infra.sh`
-- `shared/scripts/docker-build-images.sh`
-
-## Deployment Templates
-
-- Frontend image: `frontend/web/Dockerfile`
-- Backend service images: `backend/services/*/Dockerfile`
-- CI pipeline: `.github/workflows/ci.yml`
-
-Example builds:
+### 4) Start backend
 
 ```bash
-docker build -f frontend/web/Dockerfile -t travel-health-web .
-docker build -f backend/services/api-gateway/Dockerfile -t travel-health-api-gateway .
+pnpm dev:backend
 ```
 
-## Phase 1 API Flow
-
-1. Submit flight request through gateway:
+### 5) Start frontend (new terminal)
 
 ```bash
-curl -X POST http://localhost:4000/v1/flight-health/request \
-  -H "content-type: application/json" \
-  -d '{"flightNumber":"AI101","departureAirport":"DEL","arrivalAirport":"SFO","departureDate":"2026-05-20"}'
+pnpm dev:frontend
 ```
 
-2. Query score through gateway:
+### 6) Open the app
+
+- Frontend: [http://localhost:3000](http://localhost:3000)
+
+### Optional quick scripts
 
 ```bash
-curl http://localhost:4000/v1/scores/AI101
+./shared/scripts/setup-backend.sh
+./shared/scripts/setup-frontend.sh
+./shared/scripts/start-infra.sh
 ```
