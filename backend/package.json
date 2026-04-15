@@ -1,0 +1,11 @@
+{
+  "name": "@travel-health/backend",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "pnpm -C .. turbo run dev --filter=@travel-health/api-gateway --filter=@travel-health/travel-service --filter=@travel-health/health-service --filter=@travel-health/data-scraper-service --filter=@travel-health/data-analyzer-service --filter=@travel-health/score-api-service",
+    "build": "pnpm -C .. turbo run build --filter=@travel-health/api-gateway --filter=@travel-health/travel-service --filter=@travel-health/health-service --filter=@travel-health/data-scraper-service --filter=@travel-health/data-analyzer-service --filter=@travel-health/score-api-service",
+    "lint": "pnpm -C .. turbo run lint --filter=@travel-health/api-gateway --filter=@travel-health/travel-service --filter=@travel-health/health-service --filter=@travel-health/data-scraper-service --filter=@travel-health/data-analyzer-service --filter=@travel-health/score-api-service",
+    "typecheck": "pnpm -C .. turbo run typecheck --filter=@travel-health/api-gateway --filter=@travel-health/travel-service --filter=@travel-health/health-service --filter=@travel-health/data-scraper-service --filter=@travel-health/data-analyzer-service --filter=@travel-health/score-api-service"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@travel-health/frontend",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "pnpm -C .. turbo run dev --filter=@travel-health/web --filter=@travel-health/ui",
+    "build": "pnpm -C .. turbo run build --filter=@travel-health/web --filter=@travel-health/ui",
+    "lint": "pnpm -C .. turbo run lint --filter=@travel-health/web --filter=@travel-health/ui",
+    "typecheck": "pnpm -C .. turbo run typecheck --filter=@travel-health/web --filter=@travel-health/ui"
+  }
+}

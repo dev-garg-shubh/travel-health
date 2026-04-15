@@ -1,0 +1,6 @@
+{
+  "extends": "./shared/packages/config/tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true
+  }
+}

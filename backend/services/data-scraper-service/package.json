@@ -1,0 +1,27 @@
+{
+  "name": "@travel-health/data-scraper-service",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo \"No lint configured for data-scraper-service\"",
+    "test": "echo \"No tests yet for data-scraper-service\""
+  },
+  "dependencies": {
+    "@travel-health/types": "workspace:*",
+    "amqplib": "^0.10.5",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.28.1",
+    "playwright": "^1.47.2"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.7",
+    "@types/node": "^22.7.4",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.3"
+  }
+}
